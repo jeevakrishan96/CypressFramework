@@ -19,14 +19,12 @@ jobs:
 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
-        with:
-            env:
+        env:
             SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-        #    slack_message: |
-        #     *Cypress Test Report*
-        #     - Passed: ${{env.CYPRESS_PASSED}}
-        #     - Failed: ${{env.CYPRESS_FAILED}}
-        #     - Skipped: ${{env.CYPRESS_SKIPPED}}
+            SLACK_MESSAGE: Triggered by jeeva
+            with:
+            status: ${{ job.status }}
+            message: "Workflow ${{ github.workflow }} completed"
     
 
        
