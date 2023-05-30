@@ -12,29 +12,16 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-          # Disable running of tests within install job
-       command: npm run cypress\e2e\spec.cy.js
-
-  cypress-run:
-    runs-on: ubuntu-22.04
-    needs: install
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Download the build folder
-        uses: actions/download-artifact@v3
+             command: npm run demotest
+      - name: uploading artifact
+        uses: actions/upload-artifact@v2
+        if: always()
         with:
-          name: build
-          path: build
-
-      - name: Cypress run
-        uses: cypress-io/github-action@v5
-        with:
-          start: npm start
-          browser: chrome   
-      -name: slack notification
-       uses: rtCamp/action-slack-notify@v2
-       SLACK_WEBHOOK: https://hooks.slack.com/services/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
-       SLACK_CHANNEL: slackreport
+              name: cypress-execution-report
+              path: cypress/reports/html
+              retention-days: 30  
+              -name: slack notification
+              uses: rtCamp/action-slack-notify@v2
+              SLACK_WEBHOOK: https://hooks.slack.com/services/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
+              SLACK_CHANNEL: slackreport
        
