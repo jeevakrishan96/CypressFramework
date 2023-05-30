@@ -20,8 +20,4 @@ jobs:
               name: cypress-execution-report
               path: cypress/reports/html
               retention-days: 30  
-              -name: slack notification
-              uses: rtCamp/action-slack-notify@v2
-              SLACK_WEBHOOK: https://hooks.slack.com/services/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
-              SLACK_CHANNEL: slackreport
-       
+     
