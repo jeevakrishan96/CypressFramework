@@ -28,13 +28,12 @@ jobs:
 
       - name: Reinstall dependencies
         run: npm install
-
-    
+        
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
           command: npm run demotest
-          
+
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
