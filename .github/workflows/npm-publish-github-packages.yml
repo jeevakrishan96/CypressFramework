@@ -12,17 +12,17 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-             command: npm run demotest
-      - name: uploading artifact
+          command: npm run demotest
+
+      - name: Upload Artifact
         uses: actions/upload-artifact@v2
         if: always()
         with:
-              name: cypress-execution-report
-              path: cypress/reports/html
-              retention-days: 30  
-        -name: Slack Notification
-         uses: rtCamp/action-slack-notify@v2
+          name: cypress-execution-report
+          path: cypress
+          retention-days: 30
+
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
         env:
-            SLACK_WEBHOOK: https://hooks.slack.com/services/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
-           
-     
+          SLACK_WEBHOOK: https://hooks.slack.com/services/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
