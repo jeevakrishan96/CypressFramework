@@ -26,7 +26,7 @@ jobs:
       - name: Send report to Slack
         uses: rtCamp/action-slack-notify@v2
         with:
-          SLACK_WEBHOOK: ${{secrets.SLACK_WEBHOOK}}
+          SLACK_WEBHOOK: https://hooks.slack.com/services/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
           SLACK_MESSAGE: |
             *Cypress Test Report*
             - Passed: ${{env.CYPRESS_PASSED}}
