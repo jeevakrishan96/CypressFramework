@@ -1,31 +1,4 @@
-Slack Reporter for Mind Curv Cypress Test Automation Framework
-
-Description:
-  Extending the cypress framework with slack reporter that can be used on any  project
-
-AC: 
-Integration with Cypress: The Slack reporter should be compatible with Cypress framework, allowing it to capture test results and generate a report.
-
-Slack integration: The reporter should be able to send the test report to a specific Slack channel using a webhook URL.
-
-Pipeline configuration: The solution should provide clear instructions on how to configure the pipeline to execute Cypress tests and trigger the Slack reporter after the test run.
-
-Support for Pipelines: The solution should provide instructions or scripts to integrate the Slack reporter into Bitbucket Pipelines,Bitbucket Pipelines and GIT , allowing the execution of Cypress tests and sending the report to Slack.
-
-Parameterization: The solution should support passing parameters such as the Slack webhook URL via command-line arguments or environment variables to allow flexibility and easy configuration in different pipelines.
-
-Documentation: Document the results in a wiki page in the Mindcurv Confluence WOW space.
-                       explaining the setup process, required dependencies, and any additional configurations needed to successfully integrate and use the Slack reporter in Azure Pipelines,                Bitbucket Pipelines, and Git Pipelines. 
-
-    "demotest": "npx cypress run --spec run cypress/e2e/spec.cy.js"
-
-
-name: Cypress Tests with Dependency and Artifact Caching
-
-on: push
-
 name: Cypress Tests and Slack Report
-
 on:
   push:
     branches:
@@ -48,6 +21,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 14
+
 
       - name: Send report to Slack
         uses: rtCamp/action-slack-notify@v2
