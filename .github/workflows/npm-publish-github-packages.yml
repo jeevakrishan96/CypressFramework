@@ -12,20 +12,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         
-      
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+            node-version: 14
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
           command: npm run demotest
+
       - name: Send report to Slack
         uses: rtCamp/action-slack-notify@v2
         with:
-          SLACK_WEBHOOK: https://hooks.slack.com/services/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
-        #   SLACK_MESSAGE: |
-        #     *Cypress Test Report*
-        #     - Passed: ${{env.CYPRESS_PASSED}}
-        #     - Failed: ${{env.CYPRESS_FAILED}}
-        #     - Skipped: ${{env.CYPRESS_SKIPPED}}
+           slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
+           slack_message: |
+            *Cypress Test Report*
+            - Passed: ${{env.CYPRESS_PASSED}}
+            - Failed: ${{env.CYPRESS_FAILED}}
+            - Skipped: ${{env.CYPRESS_SKIPPED}}
     
 
        
