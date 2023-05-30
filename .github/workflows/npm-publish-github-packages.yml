@@ -20,6 +20,7 @@ jobs:
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
         with:
+            env:
             SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         #    slack_message: |
         #     *Cypress Test Report*
