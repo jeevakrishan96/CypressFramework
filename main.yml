@@ -1,6 +1,50 @@
-- name: Cypress run
-  uses: cypress-io/github-action@v5
-  with:
-    build: npm run build
-    start: npm start
-    browser: chrome
+name: Cypress Tests with Dependency and Artifact Caching
+
+on: push
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
+        with:
+          # Disable running of tests within install job
+          runTests: fal se
+          build: npm run build
+
+      - name: Save build folder
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          if-no-files-found: error
+          path: build
+
+  cypress-run:
+    runs-on: ubuntu-22.04
+    needs: install
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Download the build folder
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: build
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v5
+        with:
+          start: npm start
+          browser: chrome
+           
+
+      -name: slack notification
+       uses: rtCamp/action-slack-notify@v2
+       SLACK_WEBHOOK: https://hooks.slack.com/services/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
+       SLACK_CHANNEL: slackreport
+       
