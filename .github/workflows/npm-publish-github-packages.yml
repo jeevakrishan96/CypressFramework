@@ -1,6 +1,9 @@
 name: Cypress Tests with Dependency and Artifact Caching
 
-on: push
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   cypress-run:
@@ -26,5 +29,6 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_USERNAME: jeeva
-          SLACK_MESSAGE: test run
+        with:
+          status: ${{ job.status }}
+          message: "Workflow ${{ github.workflow }} completed"
