@@ -45,4 +45,4 @@ jobs:
             - Skipped: ${{ env.CYPRESS_SKIPPED }}
             # Add any additional details or summaries here
           status: ${{ job.status }}
-          message: "Workflow ${{ github.workflow }} completed"
+
