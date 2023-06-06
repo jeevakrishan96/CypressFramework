@@ -33,7 +33,7 @@ jobs:
         with:
           command: npm run demotest
 
-      - name: Slack Notification
+      - name: Slack Notification test
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
